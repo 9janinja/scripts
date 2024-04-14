@@ -1,0 +1,62 @@
+#list all processes and prints only a specific column
+ps -ef # list all process
+ps -ef | awk -F" " '{print $2}' # prints only process id (column2)
+
+#Print Error Logs;
+curl <logfileurl> | grep <keyword>
+
+###Create a Shell Script to check if divisible by 3 or 5 but not 15.
+vim samplescripts.sh
+
+#!/bin/bash
+for i in {1..100}; do
+if (['expr $i % 3' == 0] || ['expr $i % 5' == 0]) && ['expr $i % 15' != 0];
+then
+        echo $i
+fi;
+done
+#change mode to make excutable
+chmod 777 samplescripts.sh
+./samplescripts.sh
+
+###Count the number of letters in a word
+#!/bin/bash
+grep -o "s" <<<"x" | wc -l   # "-o: only, wc -l: word count"
+
+
+####to to set shell into debug mode
+set -x
+
+
+##### To schedule a daily report of the health state of a server to be sent by email at 6 PM using a cron job
+0 18 * * * /path/to/python /path/to/health_check_script.py >> /path/to/logfile.log 2>&1
+
+##### open file in ready-only mode
+vim -r filename.txt
+
+
+# Create a hard link
+ln "$source_file" "$link_file"
+
+# Create a symbolic link
+ln -s "$source_file" "$link_file"
+
+#!/bin/bash
+
+# Define source and link filenames
+source_file="source.txt"
+link_file="link.txt"
+
+# Create a symbolic link
+ln -s "$source_file" "$link_file"
+
+# Check if the symbolic link was created successfully
+if [ $? -eq 0 ]; then
+    echo "Symbolic link created successfully from '$source_file' to '$link_file'."
+else
+    echo "Error creating symbolic link."
+fi
+
+
+
+
